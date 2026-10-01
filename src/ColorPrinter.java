@@ -144,11 +144,7 @@ public class ColorPrinter {
 
       //System.out.println(outputStream.toString());
       String output = outputStream.toString();
-      System.out.println(output
-        .replace("\033", "\\033")
-        .replace("\r", "\\r")
-        .replace("\n", "\\n\n")
-);
+      System.out.println(output);
     }
 }
 

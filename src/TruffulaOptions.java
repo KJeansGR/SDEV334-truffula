@@ -105,8 +105,10 @@ public class TruffulaOptions  {
 
     boolean showHid = false;
     boolean showCol = true;
+
     File file;
     file = new File(args[args.length -1]);
+    
     if(!file.isDirectory() || !file.exists()){
       throw new FileNotFoundException("File errors!");
     }
