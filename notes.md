@@ -13,13 +13,29 @@ none.
 ## ConsoleColor.java
 This file is an enum containing the ANSI codes for different colors available for text color changing functionality of the program. This enum also has some helper functions to communicate and transfer necessary information between it and other scripts. These helper functionns are ConsoleColor() which returns a Ansi color code, getCode() which returns the Ansi code for current color, and the to stringFunction prints the Node color code to the console.
 
-Question:
+QUESTION:
 Im not familiar with helper functions being a part of enums, can you explain how this works? I was under the impression enums could contain onlys simple values belonging to one variable.
 
 ## ColorPrinter.java / ColorPrinterTest.java
-THis file seems to actually print the file tree or message given to it. it als does it in a specified color.
+THis file seems to actually print the file tree or message given to it. it also does it in a specified color. 
+
+QUESTION:
+Does this print the entire file tree in one go or is each piece of the tree given to this class one-by-one and printed and colored like that?
+
 ## TruffulaOptions.java / TruffulaOptionsTest.java
+This file controls what files are shown within the root fiile it is given. It does this using flags "-h". it similarly does this for whether to display these outputs in color with the flag "-nc" meaning no color.
+
+QUESTION:
+at a glance this color or no color setting seems like it is a toggle for coloring the entire file tree which doesnt seem smart, I wonder if we are actually chiunking our file for parts that want color or dont?
 
 ## TruffulaPrinter.java / TruffulaPrinterTest.java
+This file is definitely important. It constructs the final printing specifications for the file tree. It uses list of colors and truffula options to settings to get the final output sequence of the printstream
+
+QUESTION:
+None, im pretty sure this file actually answers my previous questions.
 
 ## AlphabeticalFileSorter.java
+This file looks like it sorts the file stream alphbetically.
+
+QESTION:
+DOes this file need to be ran before or after the final file stream is printed. Also does this only sort files that are children of other files so that the output doesnt become a krangled mess?
