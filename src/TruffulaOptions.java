@@ -102,9 +102,27 @@ public class TruffulaOptions  {
    */
   public TruffulaOptions(String[] args) throws IllegalArgumentException, FileNotFoundException {
     // TODO: Replace the below lines with your implementation
-    root = null;
-    showHidden = false;
-    useColor = false;
+
+    boolean showHid = false;
+    boolean showCol = true;
+    File file;
+    file = new File(args[args.length -1]);
+    if(!file.isDirectory() || !file.exists()){
+      throw new FileNotFoundException("File errors!");
+    }
+
+    for(int i=0; i < args.length -1; i++){
+      if(args[i].equals("-nc")){
+        showCol = false;
+      }
+      if(args[i].equals("-h")){
+        showHid = true;
+      }
+    }
+
+    root = file;
+    showHidden = showHid;
+    useColor = showCol;
   }
 
   /**
@@ -119,4 +137,5 @@ public class TruffulaOptions  {
     this.showHidden = showHidden;
     this.useColor = useColor;
   }
+
 }
