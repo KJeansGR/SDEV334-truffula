@@ -1,3 +1,4 @@
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 /**
@@ -65,7 +66,15 @@ public class ColorPrinter {
    * @param reset   if true, resets the color after printing; if false, keeps the current color
    */
   public void println(String message, boolean reset) {
-    print(message + System.lineSeparator(), reset);
+    //printStream.print((currentColor + message + System.lineSeparator() + ConsoleColor.RESET));
+    printStream.print((currentColor + message + System.lineSeparator()));
+    if(reset){
+      /* Only append the ANSI reset sequence when reset is true.
+      Adding it to the main output string would silently include the invisible
+      reset characters in the PrintStream even when reset is false. */
+      printStream.print(ConsoleColor.RESET);
+      currentColor = ConsoleColor.RESET;
+    }
   }
 
   /**
@@ -87,6 +96,17 @@ public class ColorPrinter {
    */
   public void print(String message, boolean reset) {
     // TODO: Implement this!
+    
+    printStream.print(currentColor + message);
+    //System.out.println(currentColor + message);
+
+    if(reset){
+      /* Only append the ANSI reset sequence when reset is true.
+      Adding it to the main output string would silently include the invisible
+      reset characters in the PrintStream even when reset is false. */
+      printStream.print(ConsoleColor.RESET);
+      currentColor = ConsoleColor.RESET;
+    }
   }
 
   /**
@@ -109,4 +129,27 @@ public class ColorPrinter {
     this.printStream = printStream;
     this.currentColor = color;
   }
+
+    public static void main(String[] args) {
+      
+      ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+      PrintStream printStream = new PrintStream(outputStream);
+      ColorPrinter colorPrinter = new ColorPrinter(printStream, ConsoleColor.GREEN);
+
+      colorPrinter.println("Heloo world");
+      colorPrinter.setCurrentColor(ConsoleColor.RED);
+      colorPrinter.println("Lorem Ipsum" ,false);
+      colorPrinter.println("Color not reset?");
+      colorPrinter.println("Color reset?");
+
+      //System.out.println(outputStream.toString());
+      String output = outputStream.toString();
+      System.out.println(output
+        .replace("\033", "\\033")
+        .replace("\r", "\\r")
+        .replace("\n", "\\n\n")
+);
+    }
 }
+
+
