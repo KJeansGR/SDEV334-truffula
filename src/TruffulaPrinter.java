@@ -125,12 +125,20 @@ public class TruffulaPrinter {
       return;
     }
 
-    //out.setCurrentColor(ConsoleColor.RED);
+    // i think this is correct, it mudulos the depth by the col sequence size
+    if(options.isUseColor()){
+      out.setCurrentColor(colorSequence.get(depth % colorSequence.size()));
+    }
+
+    // if(file.isHidden()){
+    //   out.setCurrentColor(ConsoleColor.GREEN);
+    // }
+
     if(file.isDirectory()){
-    out.println( indent + file.getName() + "/");
+    out.println(indent + file.getName() + "/");
     }
     else{
-      out.println( indent + file.getName());
+      out.println(indent + file.getName());
     }
 
     if (file.isDirectory()) {

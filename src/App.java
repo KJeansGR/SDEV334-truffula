@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class App {
   
@@ -47,8 +48,12 @@ public class App {
     // pass it to a new TruffulaPrinter that uses System.out
     // Then, call printTree on the TruffulaPrinter
 
+    ArrayList<ConsoleColor> colSeq = new ArrayList<>();
+    colSeq.add(ConsoleColor.WHITE);
+    colSeq.add(ConsoleColor.PURPLE);
+    colSeq.add(ConsoleColor.YELLOW);
     TruffulaOptions tOptions = new TruffulaOptions(args);
-    TruffulaPrinter tPrinter = new TruffulaPrinter(tOptions);
+    TruffulaPrinter tPrinter = new TruffulaPrinter(tOptions, colSeq);
 
     tPrinter.printTree();
   }
