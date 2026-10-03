@@ -121,7 +121,7 @@ public class TruffulaPrinter {
   //this is just like a bst tree traversal but with files
   private void printTreeHelper(File file, int depth, String indent) {
 
-    if(file.isHidden()){
+    if(file.isHidden() && !options.isShowHidden()){
       return;
     }
 
