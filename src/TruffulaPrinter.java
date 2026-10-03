@@ -114,6 +114,8 @@ public class TruffulaPrinter {
 
     File root = options.getRoot();
     printTreeHelper(root, 0, "");
+
+
     // out.println("printTree was called!");
     // out.println("My options are: " + options);
   }
@@ -134,7 +136,9 @@ public class TruffulaPrinter {
     //   out.setCurrentColor(ConsoleColor.GREEN);
     // }
 
+
     if(file.isDirectory()){
+    AlphabeticalFileSorter.sort(file.listFiles()); // <--- this is all i did for wave 7
     out.println(indent + file.getName() + "/");
     }
     else{
